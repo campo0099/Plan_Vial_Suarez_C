@@ -62,6 +62,49 @@
     .flex-row{display:flex;gap:8px;align-items:center}
     .list-card{background:#fff;padding:12px;border-radius:10px;margin-bottom:10px;box-shadow:0 6px 18px rgba(0,0,0,0.04)}
     @media (max-width:760px){ .form-grid{grid-template-columns:1fr} }
+
+    /* Parche de consistencia visual: fuerza fuente, tamaño base y layout de tablas
+       para evitar que la versión publicada muestre tipografías/espaciados distintos */
+    html { box-sizing: border-box; font-size: 14px; -webkit-text-size-adjust: 100%; }
+    *,*::before,*::after { box-sizing: inherit; }
+
+    body{
+      margin:0;
+      font-family: "Roboto", Arial, Helvetica, sans-serif;
+      font-size: 14px; /* tamaño base consistente */
+      line-height: 1.45;
+      color: #475569;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    .container{ max-width:1200px; margin:20px auto; padding:0 16px; }
+
+    /* Tablas: evitar que columnas estiren, texto con ellipsis */
+    .table-scroll { overflow:auto; background:#fff; border-radius:10px; }
+    .table-scroll table { width:100%; border-collapse:collapse; table-layout: fixed; }
+    .table-scroll th, .table-scroll td {
+      padding:8px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      vertical-align: middle;
+      font-size: 13px;
+    }
+
+    th { font-weight: 700; font-size: 13px; }
+
+    .logo{ width:84px; height:84px; object-fit:cover; }
+
+    input, select, textarea, button { font-family: inherit; font-size: 13px; }
+
+    .modal-content img{ max-width:100%; height:auto; }
+
+    @media (max-width:700px){
+      html { font-size:13px; }
+      .logo{ width:64px; height:64px; }
+      .table-scroll th, .table-scroll td{ font-size:12px; padding:6px; }
+    }
   </style>
 </head>
 <body>
